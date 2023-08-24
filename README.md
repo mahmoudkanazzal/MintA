@@ -1,1 +1,1 @@
-# MintA source code.
+# source-Code-mddatk1
