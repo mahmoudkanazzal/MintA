@@ -1,3 +1,0 @@
-
-class UnsuitableFeatureOrderException(Exception):
-    pass
