@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "minta"
+version = "1.0.0"
+description = "MintA: multi-instance adversarial attack on GNN-based malicious domain detection (IEEE S&P 2024)"
+requires-python = ">=3.10"
+authors = [{ name = "Mahmoud Nazzal" }]
+license = { text = "MIT" }
+classifiers = ["License :: OSI Approved :: MIT License"]
+
+[tool.setuptools]
+packages = ["minta", "minta.attacks", "minta.resources"]
+
+[tool.setuptools.package-data]
+minta = ["resources/public_suffix.txt"]
+
+[tool.ruff]
+line-length = 150
+target-version = "py310"
+extend-exclude = ["reference"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "B", "I"]
+ignore = ["B008", "E731"]
+
+[tool.mypy]
+ignore_missing_imports = true
+exclude = ["^reference/"]
+check_untyped_defs = false
+# types-PyYAML is a dev dependency; silence the stub notice when it is not installed.
+disable_error_code = ["import-untyped"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

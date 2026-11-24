@@ -1,0 +1,19 @@
+# Pip/venv install for machines without conda.
+# Same pins as environment.yml. Python 3.11.
+#   python3.11 -m venv .venv && . .venv/bin/activate
+#   pip install -r requirements.txt && pip install -e . --no-deps
+# torch==2.4.1 from PyPI ships CUDA 12.1 runtime libraries and runs on the H200 and A40.
+torch==2.4.1
+torch_geometric==2.6.1
+numpy==1.26.4
+pandas==2.2.3
+scipy==1.14.1
+scikit-learn==1.5.2
+matplotlib==3.9.2
+psutil==6.0.0
+pyyaml==6.0.2
+joblib==1.4.2
+pytest==8.3.3
+ruff==0.6.9
+mypy==1.11.2
+types-PyYAML==6.0.12.20240917

@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the paper below."
+title: "MintA: Multi-Instance Adversarial Attack on GNN-Based Malicious Domain Detection"
+authors:
+  - family-names: Nazzal
+    given-names: Mahmoud
+repository-code: "https://github.com/mahmoudkanazzal/MintA"
+preferred-citation:
+  type: conference-paper
+  title: "Multi-Instance Adversarial Attack on GNN-Based Malicious Domain Detection"
+  authors:
+    - family-names: Nazzal
+      given-names: Mahmoud
+    - family-names: Khalil
+      given-names: Issa
+    - family-names: Khreishah
+      given-names: Abdallah
+    - family-names: Phan
+      given-names: NhatHai
+    - family-names: Ma
+      given-names: Yao
+  collection-title: "2024 IEEE Symposium on Security and Privacy (SP)"
+  publisher:
+    name: IEEE
+  start: 1236
+  end: 1254
+  year: 2024
+  doi: "10.1109/SP54263.2024.00006"

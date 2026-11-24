@@ -1,0 +1,50 @@
+# MintA on a 7,495-domain subset of the PDNS-Net graph, built by tools/build_subset.py.
+seed: 20240520
+run_dir: runs/bdns
+device: auto            # auto (H200, then A40, then CPU), cpu, or cuda:<index>
+trials: 30
+retries: 2              # attempts after the first, per unit (max 2)
+
+experiments: [feature, joint]
+
+data:
+  dns_dir: data/DNS_bdns
+  expected_sha256:
+    edges.csv: 962ea5b1285e8c60e51cb31eb9fe7e578d65f59b6db175b9b95374b77253cce2
+    extras.csv: fd93024f754297825f65a875f00e8aafec3d04e881949186899e52125076b828
+    nodes.domain.csv: 34f4c53149d8160474a96776ce35c5d43ef155e5bb78b461812b105c46a5a418
+    nodes.host.csv: 8d0dc4bdd220946641afbf2f917d72d7baa94ce5ba33ac893bc335632f3a5ae3
+    nodes.ip.csv: 1cb1f9fe36f501f87da856b688ce18f7052e98569dbd256d0af146c1bc696795
+    summary.json: 87da21f24bfa8bba95980f1c2868b95af10e2116b285c9245b829a9f44b4fd28
+  feature_cache: artifacts/fanci45_bdns.npz
+  feature_workers: 16
+  feature_chunk_size: 20000
+
+split:
+  test: 0.3
+  val: 0.2
+  balance: true         # equal numbers of benign and malicious labeled domains
+
+target:                 # detector: HeteroConv of GATConv layers, Adam
+  hidden: 64
+  layers: 2
+  lr: 0.005
+  weight_decay: 0.001
+  epochs: 201
+
+surrogate:              # both surrogates are trained on the detector's labels for the queried domains
+  hidden: 64
+  lr: 0.01
+  weight_decay: 0.0005
+  epochs: 200
+  query_count: 600
+
+attack:
+  adversary_size: 100   # connected malicious test domains
+  alpha: 0.5            # weight of the attacked domain in the multi-instance score
+  beta: 0.5             # weight of its adversary neighbors
+  name_candidates: 200  # renamings considered per attacked domain
+  max_name_edits: 5     # edit operations per renaming; also the largest change in name length
+  edge_budget_per_node: 1
+  checkpoints: [1, 5, 20, 40, 60, 80, 100]    # numbers of perturbed adversary domains
+  edge_score_chunk: 512

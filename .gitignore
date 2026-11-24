@@ -1,0 +1,15 @@
+# Run outputs (recreated by running a config).
+runs/
+
+# Feature caches (rebuilt from the datasets on first run).
+artifacts/
+
+# Local environments.
+.venv/
+
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/

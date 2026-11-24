@@ -1,0 +1,27 @@
+# Experiment environment (kept separate from any model-serving environment).
+# Create: conda env create -f environment.yml && conda activate minta && pip install -e . --no-deps
+name: minta
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+dependencies:
+  - python=3.11.10
+  - pytorch=2.4.1
+  - pytorch-cuda=12.4
+  - numpy=1.26.4
+  - pandas=2.2.3
+  - scipy=1.14.1
+  - scikit-learn=1.5.2
+  - matplotlib=3.9.2
+  - psutil=6.0.0
+  - pyyaml=6.0.2
+  - joblib=1.4.2
+  - tmux=3.5
+  - pip=24.2
+  - pip:
+      - torch_geometric==2.6.1
+      - pytest==8.3.3
+      - ruff==0.6.9
+      - mypy==1.11.2
+      - types-PyYAML==6.0.12.20240917
